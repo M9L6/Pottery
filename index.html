@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no' />
+    <meta charset='utf-8'>
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <style></style>
+    <title>ElloPottery</title>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/playcanvas-stable.min.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script>
+        var shareobj = {
+            'title': "ElloPottery",
+            'desc': "在线捏陶瓷 做下一个陶艺大师",
+            'link': 'http://client.elloworld.cn/baidu/dueros/',
+            'pyqlink': 'http://'+ Math.ceil(Math.random()*100000) + ".client.elloworld.cn/baidu/dueros/",
+            'imgUrl':  "http://cdnclient.elloworld.cn/baidu/dueros/images/shareimg.jpg"
+        };
+        $.getJSON('http://client.elloworld.cn/Ellocase/Bright/getWeixinAuthor', function (data) {
+            if (data.appid != "") {
+                var key = data;
+                //微信接口设置，一般不用改
+                wx.config({
+                    debug: false,
+                    appId: key.appid,
+                    timestamp: key.timestamp,
+                    nonceStr: key.noncestr,
+                    signature: key.signature,
+                    jsApiList: [
+                        "onMenuShareTimeline",
+                        "onMenuShareAppMessage",
+                        "onMenuShareQQ",
+                        "onMenuShareWeibo"
+                    ]
+                });
+
+                wx.ready(function () {
+                    setShareInfo();
+                });
+            }
+        });
+
+        function setShareInfo(){
+            ///当微信接口准备好之后进行分享行为的定义
+            wx.onMenuShareTimeline({
+                title: shareobj.desc,
+                link: shareobj.pyqlink,
+                imgUrl: shareobj.imgUrl,
+                success: function () {
+                },
+                cancel: function () {
+                    // alert('取消')
+                }
+            });
+            wx.onMenuShareAppMessage({
+                title: shareobj.title,
+                desc: shareobj.desc,
+                link: shareobj.link,
+                imgUrl: shareobj.imgUrl,
+                success: function () {
+                },
+                cancel: function () {
+
+                }
+            });
+            wx.onMenuShareQQ({
+                title: shareobj.title, // 分享标题
+                desc: shareobj.desc, // 分享描述
+                link: shareobj.link,// 分享链接
+                imgUrl: shareobj.imgUrl, // 分享图标
+                success: function () {
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+        }
+
+    </script>
+    <script>
+        ASSET_PREFIX = "";
+        SCRIPT_PREFIX = "";
+        SCENE_PATH = "557317.json";
+        CONTEXT_OPTIONS = {
+            'antialias': true,
+            'alpha': false,
+            'preserveDrawingBuffer': false,
+            'preferWebGl2': true
+        };
+        SCRIPTS = [ 9423818, 9423817, 9423791, 9423812, 9423790, 9423829, 9423808, 9423793, 9423816, 9423789 ];
+        CONFIG_FILENAME = "config.json";
+        pc.script.legacy = false;
+    </script>
+</head>
+<body>
+
+<div class="loadingpage">
+    <img class="loadingbg" src="images/loading/menuBg.jpg">
+    <img class="loadinglogo" src="images/loading/loading_icon.png">
+    <div class="loadingbarcontainer">
+        <div class="loadingbar"></div>
+    </div>
+    <img class="bottomlogo" src="images/loading/logo.png">
+
+</div>
+<div class="changesizepage">
+    <div class="tipspage">
+        <img class="lrtips" src="images/1/leftrighttips.png">
+        <img class="udtips" src="images/1/updowntips.png">
+    </div>
+    <img class="bakebtn" src="images/1/bake.png">
+</div>
+
+<div class="texcolorpage">
+    <div class="topchoose">
+        <div class="topbtns">
+            <img class="colorbtn" src="images/2/color.png">
+            <img class="linebtn" src="images/2/line.png">
+            <img class="texbtn bottomline" src="images/2/texture.png">
+        </div>
+        <div class="choosebtns">
+            <div class="choosetex">
+                <img class="texeasebtn bigscale" src="images/2/ease.png">
+                <img class="texbtn1" src="images/2/texture/tex1.png">
+                <img class="texbtn2" src="images/2/texture/tex2.png">
+                <img class="texbtn3" src="images/2/texture/tex3.png">
+            </div>
+            <div class="choosecolor">
+                <img class="coloreasebtn" src="images/2/ease.png">
+                <img class="colorbtn1" src="images/2/color/1.png">
+                <img class="colorbtn2" src="images/2/color/2.png">
+                <img class="colorbtn3" src="images/2/color/3.png">
+                <img class="colorbtn4" src="images/2/color/4.png">
+                <img class="colorbtn5" src="images/2/color/5.png">
+                <img class="colorbtn6" src="images/2/color/6.png">
+                <img class="colorbtn7" src="images/2/color/7.png">
+                <img class="colorbtn8" src="images/2/color/8.png">
+                <img class="colorbtn9" src="images/2/color/9.png">
+            </div>
+            <div class="chooseline">
+                <img class="lineeasebtn" src="images/2/ease.png">
+                <img class="linebtn1" src="images/2/line/line1.png">
+                <img class="linebtn2" src="images/2/line/line2.png">
+                <img class="linebtn3" src="images/2/line/line3.png">
+            </div>
+        </div>
+    </div>
+    <div class="surebtns">
+        <img class="surebtn" src="images/2/complete/complete.png">
+        <img class="completebtn" src="images/2/complete/sure.png">
+        <img class="cancelbtn" src="images/2/complete/cancel.png">
+    </div>
+
+</div>
+
+<div class="showpage">
+    <img class="refreshbtn" src="images/3/refresh.png">
+    <img class="takeshootbtn" src="images/3/takephotobtn.png">
+    <img class="aboutusbtn" src="images/3/aboutusbtn.png">
+    <img class="tips360" src="images/3/360tips.png">
+    <img class="endlogo" src="images/3/logo.png">
+</div>
+
+<div class="aboutpage">
+    <img class="aboutuscontent" src="images/3/aboutcontent.png">
+    <img class="closeaboutbtn" src="images/3/close.png">
+</div>
+<div class="takeshootpage">
+    <img class="takeshootshow" src="">
+    <img class="savetips" src="images/takeshoot/savetips.png">
+    <img class="closetakeshoot" src="images/takeshoot/close.png">
+</div>
+<audio src="audio/takephoto.mp3" class="takephotosound"></audio>
+
+<script src="__start__.js"></script>
+<script src="__loading__.js"></script>
+</body>
+</html>
